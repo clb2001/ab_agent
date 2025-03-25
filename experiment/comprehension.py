@@ -17,12 +17,14 @@ PROMPT_comprehension = '''
 论述是：
 {claim}
 如果nums为0或者不存在相关的论述，返回空列表。
+这些句子必须可以从原文本中找到， 你不能自己创作句子。
 你只要输出这些句子即可，以列表的格式输出，示例如下：
 ["aaa", "bbb", "ccc"]
 '''
 import re
 import os
 import sys
+sys.path.append('/Users/clb/Desktop/project/code/paper/LightRAG-main')
 sys.path.append('/Users/clb/Desktop/project/code/paper/utils')
 sys.path.append('/Users/clb/Desktop/project/code/paper')
 import json
@@ -83,10 +85,10 @@ def get_info_rag(d):
             docs.add(sentence)
     return list(docs)
 
-MAX_ITERS = 10
+MAX_ITERS = 100
 
 def comprehend(model):
-    dataset_path = '/Users/clb/Desktop/project/code/paper/dataset/CHEF/dev.json'
+    dataset_path = '/Users/clb/Desktop/project/code/paper/dataset/CHEF/test.json'
     save_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/comprehension_{model}.json'
     df = load_json(dataset_path)
     data = list()
@@ -114,11 +116,11 @@ def comprehend(model):
         PROMPT_comprehension,
         output_path=save_path,
         model=model,
-        num_workers=20
+        num_workers=15
     )
 
 def comprehension_rag(model):
-    dataset_path = '/Users/clb/Desktop/project/code/paper/dataset/CHEF/dev.json'
+    dataset_path = '/Users/clb/Desktop/project/code/paper/dataset/CHEF/test.json'
     save_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/comprehension_rag_{model}.json'
     df = load_json(dataset_path)
     data = list()
@@ -138,23 +140,21 @@ def comprehension_rag(model):
             corase_sift_res = get_corase_sift_res(claim, ele['sentences'])
             ele['main_text'] = corase_sift_res 
             data.append(ele)
-            cnt += 1
-            if cnt == MAX_ITERS:
-                break        
+            cnt += 1   
     call_openai(
         data,
         'comprehension',
         PROMPT_comprehension,
         output_path=save_path,
         model=model,
-        num_workers=20
+        num_workers=15
     )
 
 def evaluate(model, mode=None):
     if mode is None:
         data_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/comprehension_{model}.json'
     else:
-        data_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/comprehension_rag_{model}.json'
+        data_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/comprehension_rag_{model}_100.json'
     data = load_json(data_path)
     call_openai(
         data,
@@ -162,17 +162,28 @@ def evaluate(model, mode=None):
         PROMPT_comprehension,
         output_path=data_path,
         model='gpt-4o-2024-08-06',
-        num_workers=20
+        num_workers=15
     )
     cnt = 0
+    arr = []
     for d in tqdm(data):
-        sim_ref, sim_response_comprehension = d['response_comprehension_evaluate']['refs'], d['response_comprehension_evaluate']['response_comprehension']
-        np_sim_ref, np_sim_response_comprehension = np.array(sim_ref).astype(float), np.array(sim_response_comprehension).astype(float)
-        sim = np.dot(np_sim_ref, np_sim_response_comprehension) / (np.linalg.norm(np_sim_ref) * np.linalg.norm(np_sim_response_comprehension))
-        d['sim'] = sim
-    df = pd.DataFrame(data)
-    accuracy_score = cnt / len(data)
-    print(f"accuracy: {accuracy_score:.2f}")  
+        if d['response_comprehension_evaluate'] is not None:
+            sim_ref, sim_response_comprehension = d['response_comprehension_evaluate']['refs'], d['response_comprehension_evaluate']['response_comprehension']
+            np_sim_ref, np_sim_response_comprehension = np.array(sim_ref).astype(float), np.array(sim_response_comprehension).astype(float)
+            sim = np.dot(np_sim_ref, np_sim_response_comprehension) / (np.linalg.norm(np_sim_ref) * np.linalg.norm(np_sim_response_comprehension))
+            # sim = cosine_similarity(np_sim_ref, np_sim_response_comprehension)
+            d['sim'] = sim
+            try:
+                refs_set = set(eval(d['refs']))
+                response_comprehension = set(eval(d['response_comprehension']))
+                d.pop('response_comprehension_evaluate')
+                cnt += len(refs_set & response_comprehension)
+            except:
+                cnt += len(refs_set)
+            arr.append(d)
+    df = pd.DataFrame(arr)
+    accuracy_score = cnt / len(arr)
+    print(f"accuracy: {accuracy_score:.4f}")  
     print(f"{df['sim'].mean()}")  
     save_json(data, data_path)
 

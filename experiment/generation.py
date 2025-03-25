@@ -85,9 +85,6 @@ def generate(model):
                 'explanation': explanation,
             }
             data.append(ele)
-            cnt += 1
-            if cnt == MAX_ITERS:
-                break
     call_openai(
         data,
         'generation',
@@ -126,20 +123,25 @@ def get_result_get_score_res(text):
 def evaluate(model):
     data_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/generation_{model}.json'
     data = load_json(data_path)
+    new_data = []
+    new_data_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/generation_new_{model}.json'
     for d in tqdm(data):
-        try:
-            result_get_score = get_result_get_score_res(d['response_get_score'])
-            d['alignment'] = result_get_score['alignment']
-            d['causality_confusion'] = result_get_score['causality_confusion']
-            d['accuracy'] = result_get_score['accuracy']
-            d['generalization'] = result_get_score['generalization']
-            d['contextual_fidelity'] = result_get_score['contextual_fidelity']
-            d['SGC'] = result_get_score['SGC']
-            d['WGC'] = result_get_score['WGC']
-            d['LC'] = result_get_score['LC']
-        except:
-            print(d['response_get_score']) 
-    df = pd.DataFrame(data)
+        if d['response_get_score'] is not None:
+            try:
+                result_get_score = get_result_get_score_res(d['response_get_score'])
+                d['alignment'] = int(result_get_score['alignment'])
+                d['causality_confusion'] = result_get_score['causality_confusion']
+                d['accuracy'] = result_get_score['accuracy']
+                d['generalization'] = result_get_score['generalization']
+                d['contextual_fidelity'] = result_get_score['contextual_fidelity']
+                d['SGC'] = result_get_score['SGC']
+                d['WGC'] = result_get_score['WGC']
+                d['LC'] = result_get_score['LC']
+                new_data.append(d)
+            except:
+                pass
+    save_json(new_data, new_data_path)
+    df = pd.DataFrame(new_data)
     print(f"model: {model}")
     print(f"alignment: {df[df['label'] == 'false']['alignment'].mean():.2f}")
     print(f"causality_confusion: {df[df['label'] == 'false']['causality_confusion'].mean():.2f}")
@@ -150,7 +152,6 @@ def evaluate(model):
     print(f"WGC: {df[df['label'] == 'false']['WGC'].mean():.2f}")
     print(f"LC: {df[df['label'] == 'false']['LC'].mean():.2f}")
     print("-----------------------------")
-    save_json(data, data_path)
 
 if __name__=='__main__':
     models = ['gpt-4o-2024-08-06', 'gpt-4o-mini']

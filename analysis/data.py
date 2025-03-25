@@ -33,7 +33,6 @@ def pubhealth():
             else:
                 default_dict['5'] += 1 / len(df)
     arr = np.array(arr)
-    # plot_zhifang(arr)
     print(default_dict)
     
 def chef():
@@ -42,7 +41,6 @@ def chef():
     default_dict = defaultdict(int)
     for id, d in tqdm(df.iterrows()):
         default_dict[d['subjects']] += 1
-        # d['len_main_text']
     print(default_dict)    
 
 if __name__=='__main__':

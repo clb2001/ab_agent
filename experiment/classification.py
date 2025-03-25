@@ -21,22 +21,31 @@ Output in JSON format, as shown in the examples below. Do not output other irrel
 '''
 
 PROMPT_classification = '''
-You are an information detection expert. 
+You are a misinformation detection expert. 
 
-Based on the scoring results and your judgment, you need to categorize the results into the following four types and provide reasons:
-false: Indicates that the description is completely incorrect.
-true: Indicates that the description is completely correct.
-mixture: Indicates that the description contains both errors and correct elements.
-unproven: Indicates that the description has not been verified. 
+Based on the following text, you should determine the type of the following claim. You need to categorize the results into the following four types:
+false: The statement is proven to be incorrect or misleading, or completely contradicts the text, or does not align with common sense.
+true: The statement is supported by the text and can be verified through reliable sources.
+mixture: Part of the statement is true, but it contains inaccurate or misleading information and partially contradicts the text.
+unproven: The statement is not adequately supported by evidence.
 
 Given the following text: 
 {text}
-Based on the above text, here is the following description: 
+Based on the above text, here is the following claim: 
 {claim}
 
 Output in JSON format, as shown in the examples below: 
-{{'result': 'mixture', 'reason': 'What's true: Pancake and cake mixes that contain mold can cause life-threatening allergic reactions. What's false: Pancake and cake mixes that have passed their expiration dates are not inherently dangerous to ordinarily healthy people.'}}
-{{'result': 'Talk of a Harvard study linking the popular British children's show "Peppa Pig" to autism went viral, but neither the study nor the scientist who allegedly published it exists.'}}
+{{'result': 'mixture'}}
+'''
+# {{'result': 'mixture', 'reason': 'What's true: Pancake and cake mixes that contain mold can cause life-threatening allergic reactions. What's false: Pancake and cake mixes that have passed their expiration dates are not inherently dangerous to ordinarily healthy people.'}}
+# {{'result': 'Talk of a Harvard study linking the popular British children's show "Peppa Pig" to autism went viral, but neither the study nor the scientist who allegedly published it exists.'}}
+
+PROMPT_label = '''
+Please categorize the content based on the subjects into the following five categories: Society, Science, Health, Politics, Culture. 
+the subjects is as followed:
+{label}
+You should only return one label.
+Just output the result.
 '''
 
 import re
@@ -79,15 +88,13 @@ def classify(model):
                 'explanation': explanation,
             }
             data.append(ele)
-        if id == 99:
-            break
     call_openai(
         data,
         'classification',
         PROMPT_classification,
         output_path=save_path,
         model=model,
-        num_workers=20
+        num_workers=10
     )
 
 def get_score(model):
@@ -104,7 +111,7 @@ def get_score(model):
         PROMPT_rate,
         output_path=dataset_path,
         model='gpt-4o-2024-08-06',
-        num_workers=20
+        num_workers=10
     )
 
 def get_result_classification_res(text):
@@ -126,42 +133,78 @@ def get_result_get_score_res(text):
         result_dict = {key: int(value) for key, value in matches}
         return result_dict
 
-def evaluate(model, label='unproven'):
+def evaluate(model, label='true'):
     data_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/classification_{model}.json'
     data = load_json(data_path)
+    new_data = []
+    new_data_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/classification_new_{model}.json'
     for d in tqdm(data):
-        try:
-            result_get_score = get_result_get_score_res(d['response_get_score'])
-            d['alignment'] = result_get_score['alignment']
-            d['causality_confusion'] = result_get_score['causality_confusion']
-            d['accuracy'] = result_get_score['accuracy']
-            d['generalization'] = result_get_score['generalization']
-            d['contextual_fidelity'] = result_get_score['contextual_fidelity']
-            d['SGC'] = result_get_score['SGC']
-            d['WGC'] = result_get_score['WGC']
-            d['LC'] = result_get_score['LC']
-            d['predict_result'] = get_result_classification_res(d['response_classification'])
-        except:
-            pass
-    save_json(data, data_path)
-    df = pd.DataFrame(data)
+        if d['response_get_score'] is not None and d['response_classification'] is not None and d['response_label'] == 'Culture':
+            try:
+                result_classification = get_result_classification_res(d['response_classification'])
+                result_get_score = get_result_get_score_res(d['response_get_score'])
+                d['alignment'] = result_get_score['alignment']
+                d['causality_confusion'] = result_get_score['causality_confusion']
+                d['accuracy'] = result_get_score['accuracy']
+                d['generalization'] = result_get_score['generalization']
+                d['contextual_fidelity'] = result_get_score['contextual_fidelity']
+                d['SGC'] = result_get_score['SGC']
+                d['WGC'] = result_get_score['WGC']
+                d['LC'] = result_get_score['LC']
+                d['predict_result'] = result_classification
+                new_data.append(d)
+            except:
+                pass
+    save_json(new_data, new_data_path)
+    df = pd.DataFrame(new_data)
     y_true = df['label']
     y_pred = df['predict_result']
     accuracy = accuracy_score(y_true, y_pred)
-    precision = precision_score(y_true, y_pred, average='macro') 
-    recall = recall_score(y_true, y_pred, average='macro')        
-    f1 = f1_score(y_true, y_pred, average='macro')                
+    precision = precision_score(y_true, y_pred, average='weighted') 
+    recall = recall_score(y_true, y_pred, average='weighted')        
+    f1 = f1_score(y_true, y_pred, average='weighted')                
     print(f"model: {model}")
-    print(f"accuracy: {accuracy:.2f}, precision: {precision:.2f}, recall: {recall:.2f}, f1: {f1:.2f}") 
-    print(f"alignment: {df[df['label'] == label]['alignment'].mean():.2f}")
-    print(f"causality_confusion: {df[df['label'] == label]['causality_confusion'].mean():.2f}")
-    print(f"accuracy: {df[df['label'] == label]['accuracy'].mean():.2f}")
-    print(f"generalization: {df[df['label'] == label]['generalization'].mean():.2f}")
-    print(f"contextual_fidelity: {df[df['label'] == label]['contextual_fidelity'].mean():.2f}")
-    print(f"SGC: {df[df['label'] == label]['SGC'].mean():.2f}")
-    print(f"WGC: {df[df['label'] == label]['WGC'].mean():.2f}")
-    print(f"LC: {df[df['label'] == label]['LC'].mean():.2f}")
+    print(f"accuracy: {accuracy:.4f}, precision: {precision:.4f}, recall: {recall:.4f}, f1: {f1:.4f}") 
+    print(f"alignment: {df[df['label'] == label]['alignment'].mean():.4f}")
+    print(f"causality_confusion: {df[df['label'] == label]['causality_confusion'].mean():.4f}")
+    print(f"accuracy: {df[df['label'] == label]['accuracy'].mean():.4f}")
+    print(f"generalization: {df[df['label'] == label]['generalization'].mean():.4f}")
+    print(f"contextual_fidelity: {df[df['label'] == label]['contextual_fidelity'].mean():.4f}")
+    print(f"SGC: {df[df['label'] == label]['SGC'].mean():.4f}")
+    print(f"WGC: {df[df['label'] == label]['WGC'].mean():.4f}")
+    print(f"LC: {df[df['label'] == label]['LC'].mean():.4f}")
     print("-----------------------------")
+
+def label():
+    dataset_path = '/Users/clb/Desktop/project/code/paper/dataset/PUBHEALTH/test.tsv'
+    save_path = f'/Users/clb/Desktop/project/code/paper/experiment/res/classification_orig.json'
+    df = pd.read_csv(dataset_path, sep='\t')
+    data = list()
+    for id, d in tqdm(df.iterrows()):
+        if not pd.isna(d['label']):
+            subjects = d['subjects']
+            main_text = d['main_text']
+            claim = d['claim']
+            label = d['label']
+            explanation = d['explanation']
+            claim = d['claim']
+            ele = {
+                'id': id,
+                'subjects': subjects,
+                'main_text': main_text,
+                'claim': claim,
+                'label': label,
+                'explanation': explanation,
+            }
+            data.append(ele)
+    call_openai(
+        data,
+        'label',
+        PROMPT_label,
+        output_path=save_path,
+        model='gpt-4o-2024-08-06',
+        num_workers=10
+    )    
 
 if __name__=='__main__':
     models = ['gpt-4o-2024-08-06', 'gpt-4o-mini']

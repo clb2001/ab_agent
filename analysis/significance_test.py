@@ -1,15 +1,43 @@
+import json
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import mannwhitneyu
 
-np.random.seed(42)  
+true_data = []
+false_data = []
+arr = []
+with open('/Users/clb/Desktop/project/code/paper/experiment/res/classification_gpt-4o-2024-08-06.json') as f:
+    data = json.load(f)
 
-true_data = np.random.randint(2, 6, (100, 8))
-false_data = np.random.randint(1, 6, (100, 8))
+for d in data:
+    if d['response_classification'] is not None and d['response_get_score'] is not None and d['label'] == 'true':
+        true_data.append([
+            d['alignment'],
+            d['causality_confusion'],
+            d['accuracy'],
+            d['generalization'],
+            d['contextual_fidelity'],
+            d['SGC'],
+            d['WGC'],
+            d['LC']
+        ])
+    elif d['response_classification'] is not None and d['response_get_score'] is not None and d['label'] == 'false':
+        false_data.append([
+            d['alignment'],
+            d['causality_confusion'],
+            d['accuracy'],
+            d['generalization'],
+            d['contextual_fidelity'],
+            d['SGC'],
+            d['WGC'],
+            d['LC']
+        ])        
 
-labels = ['Alignment', 'Causality Confusion', 'Accuracy', 'Generalization', 
-          'Contextual Fidelity', 'SGC', 'WGC', 'LC']
+labels = ['Alignment', 'Causality', 'Accuracy', 'Generalization', 
+          'Fidelity', 'SGC', 'WGC', 'LC']
+true_data = np.array(true_data)
+false_data = np.array(false_data)
 
 # 进行Mann-Whitney U检验
 results = {}
@@ -28,5 +56,5 @@ for i, label in enumerate(labels):
     axes[i].set_title(label)
 
 plt.tight_layout()
-plt.savefig('./pics/significance_test.pdf', format='pdf')
+plt.savefig('./pics/significance_test_v2.pdf', format='pdf')
 

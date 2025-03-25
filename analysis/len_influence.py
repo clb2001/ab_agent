@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-x_labels = ['<40', '40-80', '80-120', '120-160', '>=160']
+x_labels = ['&lt;40', '40-80', '80-120', '120-160', '&gt;=160']
 x = np.arange(len(x_labels))
 
-macro_f1_gpt_4o = [65.4, 73.3, 75.2, 76.1, 78.0]
-macro_f1_gpt_4o_mini = [59.8, 70.5, 72.3, 74.0, 76.3]
+macro_f1_gpt_4o = [46.25, 66.28, 68.50, 67.35, 71.10]
+macro_f1_gpt_4o_mini = [36.65, 61.04, 58.40, 57.04, 53.38]
 
-ratio = [4, 59, 19, 12, 6]
+ratio = [4, 54, 23, 10, 9]
 
 fig, ax1 = plt.subplots()
 
@@ -37,4 +37,4 @@ for i, v in enumerate(ratio):
 plt.title('Macro F1 vs Length of the Claim')
 plt.tight_layout()
 # plt.show()
-plt.savefig('./pics/influence_len.pdf')
+plt.savefig('./pics/influence_len_v2.pdf')

@@ -11,7 +11,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List
 
 headers = {
-    'Authorization': '',     
+    'Authorization': '',    
     'Content-Type': 'application/json',
 }
 
@@ -67,35 +67,44 @@ def _make_embedding_request(content: str, model: str):
 # content, prompt, task, model
 def call_openai_single(
         content, 
-        prompt,
+        prompt=None,
         task=None,
         model='gpt-4o-mini', 
     ):
     if task == 'classification':
         c = [prompt.format(text=content['main_text'], claim=content['claim'])]
-    elif task == 'comprehension':
+    elif task == 'comprehension' or task == 'comprehension_rag':
         c = [prompt.format(nums=content['nums'], text=content['main_text'], claim=content['claim'])]
     elif task == 'generation':
         c = [prompt.format(text=content['main_text'], requirement=content['requirement'])]
     elif task == 'get_score':
         c = [prompt.format(text=content['main_text'], description=content['description'])]
+    elif task == 'label':
+        c = [prompt.format(label=content['subjects'])]
     else:
         c = [content]
     url = ''
     request = _make_request(c, model)
+    cnt = 0
     while True:
+        if cnt >= 100:
+            return None
         response = requests.post(url, headers=headers, data=json.dumps(request))
         if response.status_code == 200:
             response = response.json()    
             if isinstance(response, dict) and "choices" in response.keys() and isinstance(response["choices"], list) \
                 and "message" in response["choices"][0].keys() and "content" in response["choices"][0]["message"].keys():          
                 return response
+        cnt += 1
 
 def call_openai_embedding_double(content, model='text-embedding-ada-002'):
     url = ''
     res = {}
     request = _make_embedding_request(content['refs'], model)
+    cnt = 0
     while True:
+        if cnt >= 100:
+            return None
         response = requests.post(url, headers=headers, data=json.dumps(request))
         if response.status_code == 200:
             response = response.json()    
@@ -103,8 +112,12 @@ def call_openai_embedding_double(content, model='text-embedding-ada-002'):
                 and "embedding" in response["data"][0].keys():          
                 res['refs'] = response["data"][0]["embedding"]
                 break
+        cnt += 1
     request = _make_embedding_request(content['response_comprehension'], model)
+    cnt = 0
     while True:
+        if cnt >= 100:
+            return None
         response = requests.post(url, headers=headers, data=json.dumps(request))
         if response.status_code == 200:
             response = response.json()    
@@ -112,18 +125,23 @@ def call_openai_embedding_double(content, model='text-embedding-ada-002'):
                 and "embedding" in response["data"][0].keys():          
                 res['response_comprehension'] = response["data"][0]["embedding"]
                 break
+        cnt += 1
     return res
 
 def call_openai_embedding_single(content, model='text-embedding-ada-002'):
     url = ''
     request = _make_embedding_request(content, model)
+    cnt = 0
     while True:
+        if cnt >= 100:
+            return None
         response = requests.post(url, headers=headers, data=json.dumps(request))
         if response.status_code == 200:
             response = response.json()    
             if isinstance(response, dict) and "data" in response.keys() and isinstance(response["data"], list) \
                 and "embedding" in response["data"][0].keys():          
                 return response["data"][0]["embedding"]
+        cnt += 1
             
 def call_openai_embedding(content: List[str], model='text-embedding-ada-002'):
     results = [None] * len(content)
@@ -144,16 +162,19 @@ def _call_openai_parallel(
     if prompt is None:
         prompt = []
     results = [None] * len(content)
-    with ThreadPoolExecutor(max_workers=num_workers) as executor:        
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:         
         if task == 'comprehension_evaluate':
             results = list(tqdm(executor.map(call_openai_embedding_double, content), total=len(content)))
         else:
             results = list(tqdm(executor.map(call_openai_single, content, [prompt]*len(content), [task]*len(content), [model]*len(content)), total=len(content)))
     for i, c in enumerate(content):
-        if task == 'comprehension_evaluate':
-            c[f'response_{task}'] = results[i]
+        if results[i] is None:
+            c[f'response_{task}'] = None
         else:
-            c[f'response_{task}'] = results[i]['choices'][0]['message']['content']
+            if task == 'comprehension_evaluate':
+                c[f'response_{task}'] = results[i]
+            else:
+                c[f'response_{task}'] = results[i]['choices'][0]['message']['content']
     return content
 
 def call_openai(
