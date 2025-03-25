@@ -1,0 +1,518 @@
+@article{chen2024combating,
+  title={Combating misinformation in the age of llms: Opportunities and challenges},
+  author={Chen, Canyu and Shu, Kai},
+  journal={AI Magazine},
+  volume={45},
+  number={3},
+  pages={354--368},
+  year={2024},
+  publisher={Wiley Online Library}
+}
+
+@article{de2023emergence,
+  title={Emergence of scale-free networks in social interactions among large language models},
+  author={De Marzo, Giordano and Pietronero, Luciano and Garcia, David},
+  journal={arXiv preprint arXiv:2312.06619},
+  year={2023}
+}
+
+@article{pang2024self,
+  title={Self-alignment of large language models via monopolylogue-based social scene simulation},
+  author={Pang, Xianghe and Tang, Shuo and Ye, Rui and Xiong, Yuxin and Zhang, Bolun and Wang, Yanfeng and Chen, Siheng},
+  journal={arXiv preprint arXiv:2402.05699},
+  year={2024}
+}
+
+
+@article{liu2024skepticism,
+  title={From Skepticism to Acceptance: Simulating the Attitude Dynamics Toward Fake News},
+  author={Liu, Yuhan and Chen, Xiuying and Zhang, Xiaoqing and Gao, Xing and Zhang, Ji and Yan, Rui},
+  journal={arXiv preprint arXiv:2403.09498},
+  year={2024}
+}
+
+@inproceedings{yang2023rumor,
+  title={Rumor detection on social media with crowd intelligence and chatgpt-assisted networks},
+  author={Yang, Chang and Zhang, Peng and Qiao, Wenbo and Gao, Hui and Zhao, Jiaming},
+  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  pages={5705--5717},
+  year={2023}
+}
+
+@article{liu2024can,
+  title={Can Large Language Models Detect Rumors on Social Media?},
+  author={Liu, Qiang and Tao, Xiang and Wu, Junfei and Wu, Shu and Wang, Liang},
+  journal={arXiv preprint arXiv:2402.03916},
+  year={2024}
+}
+
+@inproceedings{hang2024trumorgpt,
+  title={TrumorGPT: Query Optimization and Semantic Reasoning over Networks for Automated Fact-Checking},
+  author={Hang, Ching Nam and Yu, Pei-Duo and Tan, Chee Wei},
+  booktitle={2024 58th Annual Conference on Information Sciences and Systems (CISS)},
+  pages={1--6},
+  year={2024},
+  organization={IEEE}
+}
+
+@article{pastor2024large,
+  title={Large-Language-Model-Powered Agent-Based Framework for Misinformation and Disinformation Research: Opportunities and Open Challenges},
+  author={Pastor-Galindo, Javier and Nespoli, Pantaleone and Ruip{\'e}rez-Valiente, Jos{\'e} A},
+  journal={IEEE Security \& Privacy},
+  year={2024},
+  publisher={IEEE}
+}
+
+@inproceedings{wu2023cheap,
+  title={Cheap-fake Detection with LLM using Prompt Engineering},
+  author={Wu, Guangyang and Wu, Weijie and Liu, Xiaohong and Xu, Kele and Wan, Tianjiao and Wang, Wenyi},
+  booktitle={2023 IEEE International Conference on Multimedia and Expo Workshops (ICMEW)},
+  pages={105--109},
+  year={2023},
+  organization={IEEE}
+}
+
+@inproceedings{hu2024bad,
+  title={Bad actor, good advisor: Exploring the role of large language models in fake news detection},
+  author={Hu, Beizhe and Sheng, Qiang and Cao, Juan and Shi, Yuhui and Li, Yang and Wang, Danding and Qi, Peng},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={38},
+  number={20},
+  pages={22105--22113},
+  year={2024}
+}
+
+@article{pavlyshenko2023analysis,
+  title={Analysis of disinformation and fake news detection using fine-tuned large language model},
+  author={Pavlyshenko, Bohdan M},
+  journal={arXiv preprint arXiv:2309.04704},
+  year={2023}
+}
+
+@article{liu2024teller,
+  title={Teller: A trustworthy framework for explainable, generalizable and controllable fake news detection},
+  author={Liu, Hui and Wang, Wenya and Li, Haoru and Li, Haoliang},
+  journal={arXiv preprint arXiv:2402.07776},
+  year={2024}
+}
+
+@article{gao2024knowledge,
+  title={Knowledge enhanced vision and language model for multi-modal fake news detection},
+  author={Gao, Xingyu and Wang, Xi and Chen, Zhenyu and Zhou, Wei and Hoi, Steven CH},
+  journal={IEEE Transactions on Multimedia},
+  year={2024},
+  publisher={IEEE}
+}
+
+@article{lai2024rumorllm,
+  title={RumorLLM: A Rumor Large Language Model-Based Fake-News-Detection Data-Augmentation Approach},
+  author={Lai, Jianqiao and Yang, Xinran and Luo, Wenyue and Zhou, Linjiang and Li, Langchen and Wang, Yongqi and Shi, Xiaochuan},
+  journal={Applied Sciences},
+  volume={14},
+  number={8},
+  pages={3532},
+  year={2024},
+  publisher={MDPI}
+}
+  
+@article{su2024daad,
+  title={DAAD: Dynamic Analysis and Adaptive Discriminator for Fake News Detection},
+  author={Su, Xinqi and Cui, Yawen and Liu, Ajian and Lin, Xun and Wang, Yuhao and Liang, Haochen and Li, Wenhui and Yu, Zitong},
+  journal={arXiv preprint arXiv:2408.10883},
+  year={2024}
+}
+  
+@article{zhang2024reinforcement,
+  title={Reinforcement Retrieval Leveraging Fine-grained Feedback for Fact Checking News Claims with Black-Box LLM},
+  author={Zhang, Xuan and Gao, Wei},
+  journal={arXiv preprint arXiv:2404.17283},
+  year={2024}
+}
+  
+@article{liu2024detect,
+  title={Detect, investigate, judge and determine: A novel llm-based framework for few-shot fake news detection},
+  author={Liu, Ye and Zhu, Jiajun and Zhang, Kai and Tang, Haoyu and Zhang, Yanghai and Liu, Xukai and Liu, Qi and Chen, Enhong},
+  journal={arXiv preprint arXiv:2407.08952},
+  year={2024}
+}
+
+@article{chen2025not,
+  title={Do not wait: Preemptive rumor detection with cooperative LLMs and accessible social context},
+  author={Chen, Junyi and Liu, Leyuan and Zhou, Fan},
+  journal={Information Processing \& Management},
+  volume={62},
+  number={3},
+  pages={103995},
+  year={2025},
+  publisher={Elsevier}
+}
+  
+@article{chen2023can,
+  title={Can large language models understand content and propagation for misinformation detection: An empirical study},
+  author={Chen, Mengyang and Wei, Lingwei and Cao, Han and Zhou, Wei and Hu, Songlin},
+  journal={arXiv preprint arXiv:2311.12699},
+  year={2023}
+}
+  
+@article{zhu2024potential,
+  title={Potential of large language models as tools against medical disinformation},
+  author={Zhu, Lingxuan and Mou, Weiming and Luo, Peng},
+  journal={JAMA Internal Medicine},
+  volume={184},
+  number={4},
+  pages={450--450},
+  year={2024},
+  publisher={American Medical Association}
+}
+  
+@article{shehata2024rumour,
+  title={Rumour Evaluation with Very Large Language Models},
+  author={Shehata, Dahlia and Cohen, Robin and Clarke, Charles},
+  journal={arXiv preprint arXiv:2404.16859},
+  year={2024}
+}
+  
+@article{lu2024mining,
+  title={Mining the Explainability and Generalization: Fact Verification Based on Self-Instruction},
+  author={Lu, Guangyao and Liu, Yulin},
+  journal={arXiv preprint arXiv:2405.12579},
+  year={2024}
+}
+  
+@inproceedings{tahmasebi2024multimodal,
+  title={Multimodal misinformation detection using large vision-language models},
+  author={Tahmasebi, Sahar and M{\"u}ller-Budack, Eric and Ewerth, Ralph},
+  booktitle={Proceedings of the 33rd ACM International Conference on Information and Knowledge Management},
+  pages={2189--2199},
+  year={2024}
+}
+  
+@article{jiang2024large,
+  title={Large visual-language models are also good classifiers: a study of in-context multimodal fake news detection},
+  author={Jiang, Ye and Wang, Yimin},
+  journal={arXiv preprint arXiv:2407.12879},
+  year={2024}
+}
+  
+@article{majer2024claim,
+  title={Claim Check-Worthiness Detection: How Well do LLMs Grasp Annotation Guidelines?},
+  author={Majer, Laura and {\v{S}}najder, Jan},
+  journal={arXiv preprint arXiv:2404.12174},
+  year={2024}
+}
+  
+@inproceedings{shliselberg2024syndy,
+  title={SynDy: Syn thetic Dy namic Dataset Generation Framework for Misinformation Tasks},
+  author={Shliselberg, Michael and Kazemi, Ashkan and Hale, Scott A and Dori-Hacohen, Shiri},
+  booktitle={Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  pages={2801--2805},
+  year={2024}
+}
+  
+@article{rouzegar2024enhancing,
+  title={Enhancing Text Classification through LLM-Driven Active Learning and Human Annotation},
+  author={Rouzegar, Hamidreza and Makrehchi, Masoud},
+  journal={arXiv preprint arXiv:2406.12114},
+  year={2024}
+}
+  
+@article{yan2024enhancing,
+  title={Enhancing large language model capabilities for rumor detection with knowledge-powered prompting},
+  author={Yan, Yeqing and Zheng, Peng and Wang, Yongjun},
+  journal={Engineering Applications of Artificial Intelligence},
+  volume={133},
+  pages={108259},
+  year={2024},
+  publisher={Elsevier}
+}
+  
+@article{liu2024raemollm,
+  title={RAEmoLLM: Retrieval Augmented LLMs for Cross-Domain Misinformation Detection Using In-Context Learning based on Emotional Information},
+  author={Liu, Zhiwei and Yang, Kailai and Xie, Qianqian and de Kock, Christine and Ananiadou, Sophia and Hovy, Eduard},
+  journal={arXiv preprint arXiv:2406.11093},
+  year={2024}
+}
+  
+@article{huang2022faking,
+  title={Faking fake news for real fake news detection: Propaganda-loaded training data generation},
+  author={Huang, Kung-Hsiang and McKeown, Kathleen and Nakov, Preslav and Choi, Yejin and Ji, Heng},
+  journal={arXiv preprint arXiv:2203.05386},
+  year={2022}
+}
+  
+@article{lucas2023fighting,
+  title={Fighting fire with fire: The dual role of llms in crafting and detecting elusive disinformation},
+  author={Lucas, Jason and Uchendu, Adaku and Yamashita, Michiharu and Lee, Jooyoung and Rohatgi, Shaurya and Lee, Dongwon},
+  journal={arXiv preprint arXiv:2310.15515},
+  year={2023}
+}
+  
+@inproceedings{liang2023clean,
+  title={Clean-label Poisoning Attack against Fake News Detection Models},
+  author={Liang, Jiayi and Zhang, Xi and Shang, Yuming and Guo, Sanchuan and Li, Chaozhuo},
+  booktitle={2023 IEEE International Conference on Big Data (BigData)},
+  pages={3614--3623},
+  year={2023},
+  organization={IEEE}
+}
+  
+@article{khaliq2024ragar,
+  title={RAGAR, Your Falsehood RADAR: RAG-Augmented Reasoning for Political Fact-Checking using Multimodal Large Language Models},
+  author={Khaliq, M Abdul and Chang, P and Ma, M and Pflugfelder, Bernhard and Mileti{\'c}, F},
+  journal={arXiv preprint arXiv:2404.12065},
+  year={2024}
+}
+  
+@article{singhal2024evidence,
+  title={Evidence-backed fact checking using RAG and few-shot in-context learning with LLMs},
+  author={Singhal, Ronit and Patwa, Pransh and Patwa, Parth and Chadha, Aman and Das, Amitava},
+  journal={arXiv preprint arXiv:2408.12060},
+  year={2024}
+}
+  
+@article{liu2024fakenewsgpt4,
+  title={FakeNewsGPT4: Advancing Multimodal Fake News Detection through Knowledge-Augmented LVLMs},
+  author={Liu, Xuannan and Li, Peipei and Huang, Huaibo and Li, Zekun and Cui, Xing and Liang, Jiahao and Qin, Lixiong and Deng, Weihong and He, Zhaofeng},
+  journal={arXiv preprint arXiv:2403.01988},
+  year={2024}
+}
+  
+@article{przybyla2024attacking,
+  title={Attacking Misinformation Detection Using Adversarial Examples Generated by Language Models},
+  author={Przyby{\l}a, Piotr},
+  journal={arXiv preprint arXiv:2410.20940},
+  year={2024}
+}
+  
+@inproceedings{nan2024let,
+  title={Let silence speak: Enhancing fake news detection with generated comments from large language models},
+  author={Nan, Qiong and Sheng, Qiang and Cao, Juan and Hu, Beizhe and Wang, Danding and Li, Jintao},
+  booktitle={Proceedings of the 33rd ACM International Conference on Information and Knowledge Management},
+  pages={1732--1742},
+  year={2024}
+}
+  
+@inproceedings{kalla2024covlm,
+  title={CoVLM: Leveraging Consensus from Vision-Language Models for Semi-supervised Multimodal Fake News Detection},
+  author={Kalla, Jayateja and Biswas, Soma and others},
+  booktitle={Proceedings of the Asian Conference on Computer Vision},
+  pages={1197--1214},
+  year={2024}
+}
+  
+@article{cao2024can,
+  title={Can Large Language Models Detect Misinformation in Scientific News Reporting?},
+  author={Cao, Yupeng and Nair, Aishwarya Muralidharan and Eyimife, Elyon and Soofi, Nastaran Jamalipour and Subbalakshmi, KP and Wullert II, John R and Basu, Chumki and Shallcross, David},
+  journal={arXiv preprint arXiv:2402.14268},
+  year={2024}
+}
+  
+@inproceedings{caramancion2023news,
+  title={News verifiers showdown: a comparative performance evaluation of chatgpt 3.5, chatgpt 4.0, bing ai, and bard in news fact-checking},
+  author={Caramancion, Kevin Matthe},
+  booktitle={2023 IEEE Future Networks World Forum (FNWF)},
+  pages={1--6},
+  year={2023},
+  organization={IEEE}
+}
+  
+@article{li2023revisit,
+  title={A revisit of fake news dataset with augmented fact-checking by chatgpt},
+  author={Li, Zizhong and Zhang, Haopeng and Zhang, Jiawei},
+  journal={arXiv preprint arXiv:2312.11870},
+  year={2023}
+}
+
+@article{pendyala2024explaining,
+  title={Explaining Misinformation Detection Using Large Language Models},
+  author={Pendyala, Vishnu S and Hall, Christopher E},
+  journal={Electronics},
+  volume={13},
+  number={9},
+  pages={1673},
+  year={2024},
+  publisher={MDPI}
+}
+
+@article{rony2024exploring,
+  title={Exploring the Potential of the Large Language Models (LLMs) in Identifying Misleading News Headlines},
+  author={Rony, Md Main Uddin and Haque, Md Mahfuzul and Ali, Mohammad and Alam, Ahmed Shatil and Hassan, Naeemul},
+  journal={arXiv preprint arXiv:2405.03153},
+  year={2024}
+}
+
+@article{zarharan2024tell,
+  title={Tell Me Why: Explainable Public Health Fact-Checking with Large Language Models},
+  author={Zarharan, Majid and Wullschleger, Pascal and Kia, Babak Behkam and Pilehvar, Mohammad Taher and Foster, Jennifer},
+  journal={arXiv preprint arXiv:2405.09454},
+  year={2024}
+}
+
+@article{yang2024reinforcement,
+  title={Reinforcement Tuning for Detecting Stances and Debunking Rumors Jointly with Large Language Models},
+  author={Yang, Ruichao and Gao, Wei and Ma, Jing and Lin, Hongzhan and Wang, Bo},
+  journal={arXiv preprint arXiv:2406.02143},
+  year={2024}
+}
+
+@article{kumar2024silver,
+  title={Silver lining in the fake news cloud: Can large language models help detect misinformation?},
+  author={Kumar, Raghvendra and Goddu, Bhargav and Saha, Sriparna and Jatowt, Adam},
+  journal={IEEE Transactions on Artificial Intelligence},
+  year={2024},
+  publisher={IEEE}
+}
+
+@article{zeng2024justilm,
+  title={JustiLM: Few-shot Justification Generation for Explainable Fact-Checking of Real-world Claims},
+  author={Zeng, Fengzhu and Gao, Wei},
+  journal={Transactions of the Association for Computational Linguistics},
+  volume={12},
+  pages={334--354},
+  year={2024},
+  publisher={MIT Press One Broadway, 12th Floor, Cambridge, Massachusetts 02142, USA~…}
+}
+
+@article{pan2023fact,
+  title={Fact-checking complex claims with program-guided reasoning},
+  author={Pan, Liangming and Wu, Xiaobao and Lu, Xinyuan and Luu, Anh Tuan and Wang, William Yang and Kan, Min-Yen and Nakov, Preslav},
+  journal={arXiv preprint arXiv:2305.12744},
+  year={2023}
+}
+
+@article{li2023self,
+  title={Self-checker: Plug-and-play modules for fact-checking with large language models},
+  author={Li, Miaoran and Peng, Baolin and Galley, Michel and Gao, Jianfeng and Zhang, Zhu},
+  journal={arXiv preprint arXiv:2305.14623},
+  year={2023}
+}
+
+@article{chern2023factool,
+  title={FacTool: Factuality Detection in Generative AI--A Tool Augmented Framework for Multi-Task and Multi-Domain Scenarios},
+  author={Chern, I and Chern, Steffi and Chen, Shiqi and Yuan, Weizhe and Feng, Kehua and Zhou, Chunting and He, Junxian and Neubig, Graham and Liu, Pengfei and others},
+  journal={arXiv preprint arXiv:2307.13528},
+  year={2023}
+}
+
+@article{tan2023evidence,
+  title={Evidence-based Interpretable Open-domain Fact-checking with Large Language Models},
+  author={Tan, Xin and Zou, Bowei and Aw, Ai Ti},
+  journal={arXiv preprint arXiv:2312.05834},
+  year={2023}
+}
+
+@article{quelle2024perils,
+  title={The perils and promises of fact-checking with large language models},
+  author={Quelle, Dorian and Bovet, Alexandre},
+  journal={Frontiers in Artificial Intelligence},
+  volume={7},
+  pages={1341697},
+  year={2024},
+  publisher={Frontiers}
+}
+
+@article{tian2024web,
+  title={Web Retrieval Agents for Evidence-Based Misinformation Detection},
+  author={Tian, Jacob-Junqi and Yu, Hao and Orlovskiy, Yury and Vergho, Tyler and Rivera, Mauricio and Goel, Mayank and Yang, Zachary and Godbout, Jean-Francois and Rabbany, Reihaneh and Pelrine, Kellin},
+  journal={arXiv preprint arXiv:2409.00009},
+  year={2024}
+}
+
+@article{kim2024can,
+  title={Can LLMs Produce Faithful Explanations For Fact-checking? Towards Faithful Explainable Fact-Checking via Multi-Agent Debate},
+  author={Kim, Kyungha and Lee, Sangyun and Huang, Kung-Hsiang and Chan, Hou Pong and Li, Manling and Ji, Heng},
+  journal={arXiv preprint arXiv:2402.07401},
+  year={2024}
+}
+
+@article{xuan2024lemma,
+  title={LEMMA: Towards LVLM-Enhanced Multimodal Misinformation Detection with External Knowledge Augmentation},
+  author={Xuan, Keyang and Yi, Li and Yang, Fan and Wu, Ruochen and Fung, Yi R and Ji, Heng},
+  journal={arXiv preprint arXiv:2402.11943},
+  year={2024}
+}
+
+@inproceedings{qi2024sniffer,
+  title={SNIFFER: Multimodal Large Language Model for Explainable Out-of-Context Misinformation Detection},
+  author={Qi, Peng and Yan, Zehong and Hsu, Wynne and Lee, Mong Li},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={13052--13062},
+  year={2024}
+}
+
+@article{wang2024mmidr,
+  title={Mmidr: Teaching large language model to interpret multimodal misinformation via knowledge distillation},
+  author={Wang, Longzheng and Xu, Xiaohan and Zhang, Lei and Lu, Jiarui and Xu, Yongxiu and Xu, Hongbo and Tang, Minghao and Zhang, Chuang},
+  journal={arXiv preprint arXiv:2403.14171},
+  year={2024}
+}
+
+@article{zhang2024somelvlm,
+  title={Somelvlm: A large vision language model for social media processing},
+  author={Zhang, Xinnong and Kuang, Haoyu and Mou, Xinyi and Lyu, Hanjia and Wu, Kun and Chen, Siming and Luo, Jiebo and Huang, Xuanjing and Wei, Zhongyu},
+  journal={arXiv preprint arXiv:2402.13022},
+  year={2024}
+}
+
+@article{geng2024multimodal,
+  title={Multimodal Large Language Models to Support Real-World Fact-Checking},
+  author={Geng, Jiahui and Kementchedjhieva, Yova and Nakov, Preslav and Gurevych, Iryna},
+  journal={arXiv preprint arXiv:2403.03627},
+  year={2024}
+}
+
+@article{zhou2024correcting,
+  title={Correcting misinformation on social media with a large language model},
+  author={Zhou, Xinyi and Sharma, Ashish and Zhang, Amy X and Althoff, Tim},
+  journal={arXiv preprint arXiv:2403.11169},
+  year={2024}
+}
+
+
+
+
+
+
+@inproceedings{palmer2017proceedings,
+  title={Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing},
+  author={Palmer, Martha and Hwa, Rebecca and Riedel, Sebastian},
+  booktitle={Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing},
+  year={2017}
+}
+
+@misc{zelterman2001causality,
+  title={Causality: models, reasoning, and inference},
+  author={Zelterman, Daniel},
+  year={2001},
+  publisher={Taylor \& Francis}
+}
+
+@article{varady2021causal,
+  title={Causal language in observational orthopaedic research},
+  author={Varady, Nathan H and Feroe, Aliya G and Fontana, Mark Alan and Chen, Antonia F},
+  journal={JBJS},
+  volume={103},
+  number={19},
+  pages={e76},
+  year={2021},
+  publisher={LWW}
+}
+
+@article{sumner2014association,
+  title={The association between exaggeration in health related science news and academic press releases: retrospective observational study},
+  author={Sumner, Petroc and Vivian-Griffiths, Solveiga and Boivin, Jacky and Williams, Andy and Venetis, Christos A and Davies, Aim{\'e}e and Ogden, Jack and Whelan, Leanne and Hughes, Bethan and Dalton, Bethan and others},
+  journal={Bmj},
+  volume={349},
+  year={2014},
+  publisher={British Medical Journal Publishing Group}
+}
+
+@article{vincze2008bioscope,
+  title={The BioScope corpus: biomedical texts annotated for uncertainty, negation and their scopes},
+  author={Vincze, Veronika and Szarvas, Gy{\"o}rgy and Farkas, Rich{\'a}rd and M{\'o}ra, Gy{\"o}rgy and Csirik, J{\'a}nos},
+  journal={BMC bioinformatics},
+  volume={9},
+  pages={1--9},
+  year={2008},
+  publisher={Springer}
+}
